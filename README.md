@@ -1,24 +1,26 @@
 # Network analysis
 
-For this assignment, submit solutions to the two sections, one focused on random walk with restart, and the second one focused on centrality measures.
+This assignment consists of two sections, one focused on random walk with restart (RWR) and the other on centrality measures. Please submit your solutions to both sections.
 
 ## Random walk with restart
 
-The goal of this exercise is to find candidate genes associated with a disease X using a guilt-by-association approach. We will use a random walk with restart (RWR) to accomplish our goal. Remember that guilt-by-association methods are based on our assumption that genes/proteins with similar functions or similar phenotypes tend to be neighbors in biological networks. So a higher RWR score for a gene means that it is more likely to be functionally related to a "seed", which is a gene or a set of genes that are known to be involved in the disease.
+The goal of this exercise is to find candidate genes associated with disease X using a guilt-by-association approach. To accomplish this, you will use a random walk with restart (RWR) algorithm implemented as a function in the rwr.R file. The PPI.tsv.gz file encodes an undirected unweighted protein-protein interaction (PPI) network.
 
-1. A RWR function is implemented in the rwr.R file for you. The arguments and return values for the function are also included in the file. The file PPI.tsv.gz encodes a undirected unweighted protein-protein interaction (PPI) network. Each row in the file represents an edge of the PPI network. Using the RWR function, "PIK3R1" gene as the seed, and the protein-protein network in ppi.tsv.gz, find the 10 genes besides PIK3R1 that are most likely to be causal for X. Use the default values for gamma, tmax, and eps. 
+Your task is to use the RWR function and the PPI network to find the 10 genes, besides PIK3R1, that are most likely to be causal for disease X. Remember that guilt-by-association methods assume that genes/proteins with similar functions or similar phenotypes tend to be neighbors in biological networks. Therefore, a higher RWR score for a gene means that it is more likely to be functionally related to a "seed", a gene that is known to be involved in the disease.
 
-2. Vary gamma from 0.1 - 0.8 with a step size of 0.1 (`seq(0.1,0.8,0.1)`) and identify the top 10 candidates for each case. Do the top 10 genes change or do they remain the same? Does the order of the genes change?  If yes, why do you think that is?
+For the first part of your exercise, you should use the RWR function and set the "PIK3R1" gene as the seed. Then, use the default values for gamma, tmax, and eps to find the 10 genes most likely to be causal for disease X. Please submit the names and scores of these 10 genes once you have identified them.
 
-For (1) submit the names and scores of the 10 genes, and for (2) respond whether the changing gamma affects the identified genes or the order of the genes and if yes, why?
+For the next part of the exercise, you should vary gamma from 0.1 to 0.8 with a step size of 0.1 (`seq(0.1,0.8,0.1)`) and identify the top 10 candidates for each case. You should pay attention to whether the top 10 genes change or remain the same and whether the order of the genes changes. If the top 10 genes or their order changes, please explain why you think that is the case.
 
-Remember that an edge between nodes "A" and "B", implies an edge between nodes "B" and "A" in the case of undirected networks. To save space, PPI.tsv.gz only has one of the two edges. 
+Note that in the PPI network, an edge between nodes "A" and "B" implies an edge between nodes "B" and "A". To save space, PPI.tsv.gz only has one of the two edges.
 
 ## Centrality measures
 
-Centrality measures in networks are often used to measure the importance of nodes and edges in the network. The R package `igraph` includes a collection of network analysis tools that can make downstream analyses more efficient. The R package can be installed from CRAN as described here: https://r.igraph.org. You will need the igraph package for this part of the assignment.
+Centrality measures measure the importance of nodes and edges in the network. The R package `igraph` includes network analysis tools that can make downstream analyses more efficient. If you need to install the package, you can find instructions on how to do so on the CRAN website at https://r.igraph.org.
 
-First, convert the network in PPI.tsv.gz into an igraph object. One way to do this is to create an adjacency matrix from the edges in PPI.tsv.gz, and then use the `graph_from_adjacency_matrix` function in igraph.  Once you have the igraph object, answer the following questions:
+Once igraph is installed, you should convert the network in PPI.tsv.gz into an igraph object. One way to do this is to create an adjacency matrix from the edges in PPI.tsv.gz, and then use the `graph_from_adjacency_matrix` function in igraph.
+
+After converting the network into an igraph object, answer the following two questions:
 
 1. Use the `degree` function in igraph to find the names of the 10 genes with the highest degree centrality.
 
