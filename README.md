@@ -18,7 +18,7 @@ Note that in the PPI network, an edge between nodes "A" and "B" implies an edge 
 
 The following graph G includes 12 nodes. 
 
-![graph](modular.svg)
+![graph](modular.png)
 
 Define the adjacency matrix $A$, and the degree matrix $D$ for this undirected, unweighted graph. The define the Laplacian matrix $L$, where $L = D - A$. Similar to the example in class, decompose $L =  U \Sigma U^{-1}$. Explain how you will clusters the nodes in $G$ using that decomposition. Submit the eigenvalues and eigenvectors of $L$ with the explanation of how you would use it to find clusters in the graph.
 
